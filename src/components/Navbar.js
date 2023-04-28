@@ -1,18 +1,25 @@
 import logo from '../images/logo.svg';
 
 import { pageLinks, socialLinks } from './data';
+import { useState } from 'react'
 
 export const Navbar = () => {
+
+    const [toggle, setToggle] = useState(false);
+
+    const toggleClasses = toggle ? "show-links nav-links" : "nav-links";
+    const navHeaderClasses = toggle ? "nav-header fix-logo" : "nav-header";
+
     return (
         <nav className="navbar">
         <div className="nav-center">
-          <div className="nav-header">
+          <div className={navHeaderClasses}>
             <img src={logo} className="nav-logo" alt="backroads" />
-            <button type="button" className="nav-toggle" id="nav-toggle">
+            <button type="button" className="nav-toggle" id="nav-toggle" onClick={() => setToggle(!toggle)}>
               <i className="fas fa-bars"></i>
             </button>
           </div>
-          <ul className="nav-links" id="nav-links">
+          <ul className={toggleClasses} id="nav-links">
             {
                 pageLinks.map((link) => {
                     return(
